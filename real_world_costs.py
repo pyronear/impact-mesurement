@@ -3,9 +3,23 @@ Real-world cost data fetcher for wildfire impact calculations.
 Integrates with multiple data sources to get accurate suppression costs and asset values.
 
 Note: This module is designed to work with external APIs (Eurostat, data.gouv.fr, World Bank).
-For now, it provides a framework and calibrated data. API integration can be enabled by:
+For now, it provides a framework and ASSUMPTION-based placeholder data. API integration can
+be enabled by:
   1. Installing requests: pip install requests
   2. Calling with use_api=True
+
+IMPORTANT - sourcing status of FALLBACK_COSTS (issue #7): BDIFF
+(Incendies.csv, the "historical" data referenced elsewhere in this project)
+records fire location, cause, area burned, and casualty/building-damage
+counts. It does **not** contain any suppression-cost or asset-value field, so
+these figures cannot be described as "BDIFF historical" data - that label was
+incorrect and has been removed. The values below are unsourced planning-level
+assumptions (a plausible €/ha order of magnitude for French wildfire
+suppression operations and rural/peri-urban asset density), not a cited
+dataset. Until a real source is integrated (e.g. SDIS/DGSCGC budget reports,
+Cour des comptes wildfire cost reviews, ONF/DDT asset valuations, or FFA
+insurance-claims statistics, each with a year and method), treat every value
+here as ``ASSUMPTION``.
 """
 
 import json
@@ -18,17 +32,22 @@ logger = logging.getLogger(__name__)
 
 # ============================================================================
 # FALLBACK VALUES (used if APIs unavailable)
+#
+# ASSUMPTION - see module docstring: not derived from BDIFF or any other
+# cited dataset. Kept as a single table (the duplicate ECONOMIC_FACTORS table
+# that used to live in wildfire_impact_calculator.py has been removed; this
+# is now the only place these numbers are defined).
 # ============================================================================
 
 FALLBACK_COSTS = {
     # Department: {suppression_cost_€/ha, asset_value_€/ha, source}
-    '06': {'suppression': 2500, 'asset_value': 8000, 'source': 'BDIFF historical (Alpes-Maritimes)'},
-    '13': {'suppression': 2200, 'asset_value': 6500, 'source': 'BDIFF historical (Bouches-du-Rhône)'},
-    '11': {'suppression': 2000, 'asset_value': 5500, 'source': 'BDIFF historical (Aude)'},
-    '83': {'suppression': 2300, 'asset_value': 7000, 'source': 'BDIFF historical (Var)'},
-    '2A': {'suppression': 2400, 'asset_value': 7500, 'source': 'BDIFF historical (Corse-du-Sud)'},
-    '2B': {'suppression': 2400, 'asset_value': 7500, 'source': 'BDIFF historical (Haute-Corse)'},
-    'default': {'suppression': 1800, 'asset_value': 4500, 'source': 'Conservative estimate'},
+    '06': {'suppression': 2500, 'asset_value': 8000, 'source': 'ASSUMPTION (unsourced placeholder, Alpes-Maritimes)'},
+    '13': {'suppression': 2200, 'asset_value': 6500, 'source': 'ASSUMPTION (unsourced placeholder, Bouches-du-Rhône)'},
+    '11': {'suppression': 2000, 'asset_value': 5500, 'source': 'ASSUMPTION (unsourced placeholder, Aude)'},
+    '83': {'suppression': 2300, 'asset_value': 7000, 'source': 'ASSUMPTION (unsourced placeholder, Var)'},
+    '2A': {'suppression': 2400, 'asset_value': 7500, 'source': 'ASSUMPTION (unsourced placeholder, Corse-du-Sud)'},
+    '2B': {'suppression': 2400, 'asset_value': 7500, 'source': 'ASSUMPTION (unsourced placeholder, Haute-Corse)'},
+    'default': {'suppression': 1800, 'asset_value': 4500, 'source': 'ASSUMPTION (conservative unsourced default)'},
 }
 
 # ============================================================================
@@ -84,7 +103,7 @@ class RealWorldCostFetcher:
             
         except ImportError:
             logger.warning("Requests module not installed. Install with: pip install requests")
-            logger.info("Using fallback cost values (calibrated from BDIFF historical data)")
+            logger.info("Using fallback cost values (unsourced assumption, see FALLBACK_COSTS docstring)")
         except Exception as e:
             logger.warning(f"Eurostat API error: {e}")
         
@@ -175,83 +194,39 @@ class RealWorldCostFetcher:
         
         return None
     
-    @lru_cache(maxsize=32)
-    def get_insurance_data(self, dept: str = None) -> Optional[Dict]:
-        """
-        Fetch insurance cost estimates from public sources.
-        
-        Uses: Historical fire insurance data and regional variations
-        Returns: Dict with insurance-based valuations
-        """
-        try:
-            # Use FÉDÉRATION FRANÇAISE DE L'ASSURANCE data
-            # This would need manual integration or a data API
-            
-            # For now, use calibrated insurance multipliers
-            insurance_factors = {
-                'high_risk_mediterranean': 1.8,    # Higher insurance in high-risk areas
-                'medium_risk_continental': 1.4,
-                'low_risk': 1.0,
-            }
-            
-            logger.info("Using calibrated insurance cost factors")
-            return {
-                'source': 'Insurance market analysis',
-                'factors': insurance_factors,
-                'method': 'Risk-adjusted multipliers'
-            }
-            
-        except Exception as e:
-            logger.warning(f"Insurance data error: {e}")
-        
-        return None
-    
     def get_combined_costs(self, dept: str, use_api: bool = True) -> Dict:
         """
-        Get costs from real-world APIs with fallback to cached values.
-        
+        Get costs for a department.
+
         Parameters:
         -----------
         dept : str
             French department code
         use_api : bool
-            Whether to attempt API calls (set False to use fallback)
-        
+            Reserved for future use once a real API-based adjustment is
+            wired up (see note below). Currently has no effect: no API
+            source is applied to these numbers.
+
         Returns:
         --------
         Dict with {suppression, asset_value, source}
+
+        NOTE (issue #11): this function previously called
+        ``get_eurostat_land_values()`` and a (now removed) unsourced
+        ``get_insurance_data()`` helper containing two sets of hardcoded
+        multipliers - 1.8/1.4/1.0 by risk class, and 1.5/1.3/1.4 by
+        department - and only appended text like " + insurance adjustment
+        (factor: 1.5)" to the ``source`` string without ever multiplying
+        ``suppression`` or ``asset_value`` by that factor. That was
+        misleading: it made the output look risk-adjusted when the numbers
+        were untouched. Both multiplier tables have been deleted rather than
+        silently kept unused. If department-specific cost adjustments are
+        wanted, they need a real, cited source and must actually be applied
+        to the returned values, not just described in ``source``.
         """
-        # Start with fallback
-        costs = FALLBACK_COSTS.get(dept, FALLBACK_COSTS['default']).copy()
-        
-        if not use_api:
-            return costs
-        
-        try:
-            # Try to enhance with API data
-            eurostat = self.get_eurostat_land_values()
-            if eurostat:
-                # Could apply Eurostat adjustments here
-                logger.info(f"Enhanced {dept} costs with Eurostat data")
-            
-            insurance = self.get_insurance_data(dept)
-            if insurance:
-                # Apply insurance-based adjustments
-                risk_factors = {
-                    '06': 1.5,  # Alpes-Maritimes - very high risk
-                    '13': 1.3,  # Bouches-du-Rhône
-                    '83': 1.4,  # Var
-                    '2A': 1.4,  # Corse
-                    '2B': 1.4,  # Corse
-                }
-                
-                factor = risk_factors.get(dept, 1.0)
-                costs['source'] = f"{costs['source']} + insurance adjustment (factor: {factor})"
-            
-        except Exception as e:
-            logger.warning(f"Error enhancing costs with APIs: {e}")
-        
-        return costs
+        # FALLBACK_COSTS is currently the only implemented data source; see
+        # its docstring/comments for sourcing status (all ASSUMPTION).
+        return FALLBACK_COSTS.get(dept, FALLBACK_COSTS['default']).copy()
     
     def get_cost_metadata(self) -> Dict:
         """
@@ -261,19 +236,18 @@ class RealWorldCostFetcher:
         """
         return {
             'timestamp': datetime.now().isoformat(),
-            'primary_source': 'BDIFF historical data + calibration',
+            'primary_source': 'ASSUMPTION (unsourced placeholder values, see module docstring)',
             'secondary_sources': [
-                'Eurostat (EU land values)',
-                'data.gouv.fr (French open data)',
-                'World Bank (economic indicators)',
-                'Insurance market analysis',
+                'Eurostat (EU land values) - fetch framework only, not yet applied to costs',
+                'data.gouv.fr (French open data) - fetch framework only, not yet applied to costs',
+                'World Bank (economic indicators) - fetch framework only, not yet applied to costs',
             ],
-            'methodology': 'Risk-adjusted regional cost factors',
-            'update_frequency': 'Annual (from BDIFF updates)',
+            'methodology': 'Static per-department placeholder table (FALLBACK_COSTS); no API-derived adjustment is currently applied',
+            'update_frequency': 'Manual (no automated update pipeline exists)',
             'confidence': {
-                'suppression_costs': 'High (historical data)',
-                'asset_values': 'Medium (regional estimates)',
-                'total': 'Good (conservative approach)'
+                'suppression_costs': 'Low (unsourced assumption)',
+                'asset_values': 'Low (unsourced assumption)',
+                'total': 'Low (unsourced placeholder values; do not use for financial decisions without replacing with a cited source)'
             },
             'api_integration': 'Available when requests module is installed'
         }
@@ -344,19 +318,14 @@ if __name__ == '__main__':
     else:
         print("   ✗ Failed")
     
-    print("\n4. Testing Insurance Data...")
-    insurance = fetcher.get_insurance_data()
-    if insurance:
-        print(f"   ✓ Success: {insurance['source']}")
-    
-    print("\n5. Testing Combined Costs for Department 06...")
+    print("\n4. Testing Combined Costs for Department 06...")
     costs_06 = fetcher.get_combined_costs('06', use_api=False)
     print(f"   Suppression: €{costs_06['suppression']}/ha")
     print(f"   Asset Value: €{costs_06['asset_value']}/ha")
     print(f"   Total Value: €{costs_06['suppression'] + costs_06['asset_value']}/ha")
     print(f"   Source: {costs_06['source']}")
     
-    print("\n6. Cost Metadata...")
+    print("\n5. Cost Metadata...")
     metadata = fetcher.get_cost_metadata()
     print(f"   Primary: {metadata['primary_source']}")
     print(f"   Secondary sources: {len(metadata['secondary_sources'])}")
