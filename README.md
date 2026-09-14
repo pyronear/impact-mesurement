@@ -159,7 +159,7 @@ Mixed forest:             55   tCO2/ha burned (range 40-70)
 Garrigue / maquis:        25   tCO2/ha burned (range 15-35)
 Grassland:                10   tCO2/ha burned (range 5-15)
 ```
-Values are range midpoints from the Pyronear "CO2 Calculation" document
+Values are range midpoints from [Pyronear_CO2_Calculation.pdf](Pyronear_CO2_Calculation.pdf)
 (Emissions = A × MB × Cf × EF_CO2, CORINE Land Cover classes). Gross emissions
 only: post-fire regrowth and soil carbon are not modelled.
 

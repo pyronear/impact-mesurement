@@ -49,7 +49,7 @@ SPREAD_RATES = {
 }
 
 # CO2 emitted per hectare burned, by vegetation type (tCO2/ha).
-# Source: Pyronear, "Pyronear CO2 Calculation" (IPCC Tier 2 approach,
+# Source: Pyronear_CO2_Calculation.pdf at the repo root (IPCC Tier 2 approach,
 # Emissions = A × MB × Cf × EF_CO2, with CORINE Land Cover classes).
 # Values are the midpoints of the ranges given in that document, except
 # pine_forest_dry which uses its worked example (85 t/ha × 0.52 × 1.58).
