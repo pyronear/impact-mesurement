@@ -259,7 +259,7 @@ Q: How accurate is the model?
 A: Calibrated using 21,141 real fire records. IPCC standard methods.
 
 Q: Can I modify the vegetation types or regions?
-A: Yes! Edit wildfire_impact_calculator.py (SPREAD_RATES, FUEL_CHARACTERISTICS)
+A: Yes! Edit wildfire_impact_calculator.py (SPREAD_RATES, TCO2_PER_HA)
 
 Q: How do I deploy to production?
 A: Use gunicorn. See WEBAPP_GUIDE.md for details.

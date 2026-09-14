@@ -101,12 +101,13 @@ print(results)
    ΔArea = Area(t₀) - Area(t₀ - x)  [direct]
    + ΔP_escape × Avg_Escaped_Size    [risk reduction]
 
-4. CARBON EMISSIONS (IPCC Tier 1)
-   tCO2/ha = Fuel_Load × Combustion × 0.47 × (44/12)
+4. CARBON EMISSIONS (Pyronear CO2 Calculation document, IPCC Tier 2 approach)
+   tCO2 = Hectares × tCO2/ha(vegetation)
    
-   Garrigue: ~15.5 tCO2/ha
-   Pine: ~15.5 tCO2/ha  
-   Mixed: ~10.2 tCO2/ha
+   Pine (coniferous): 69.8 tCO2/ha
+   Mixed forest:      55 tCO2/ha
+   Garrigue/maquis:   25 tCO2/ha
+   Grassland:         10 tCO2/ha
 
 5. ECONOMIC VALUE
    € = ΔArea × (Suppression_Cost + Asset_Value)

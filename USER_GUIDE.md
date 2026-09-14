@@ -89,12 +89,14 @@ This is multiplied by the **historical average escaped fire size** (150+ hectare
 
 Once hectares saved are calculated:
 
-**Carbon (IPCC Tier 1 Method):**
+**Carbon (IPCC Tier 2 approach, Pyronear CO2 Calculation document):**
 ```
-tCO₂/hectare = Fuel_Load × Combustion_Fraction × 0.47 × (44/12)
+tCO₂ = Hectares × tCO₂/ha(vegetation)
 ```
-- Garrigue (Mediterranean): ~15.5 tCO₂/ha
-- Mixed forest: ~10.2 tCO₂/ha
+- Pine forest (coniferous): 69.8 tCO₂/ha
+- Mixed forest: 55 tCO₂/ha
+- Garrigue/Maquis (Mediterranean): 25 tCO₂/ha
+- Grassland: 10 tCO₂/ha
 
 **Economic Value (Real-World Data - See section below):**
 ```
@@ -277,7 +279,7 @@ tCO₂ Avoided: 363 tCO₂
 ```
 Calculated as:
 - Risk-adjusted hectares × Fuel load × Combustion fraction × Carbon factor
-- Example: 35.1 ha × 10.3 tCO₂/ha ≈ 363 tCO₂
+- Example: 35.1 ha × 25 tCO₂/ha ≈ 878 tCO₂ (garrigue)
 
 **Interpretation:** Equivalent to:
 - Driving a car 1,100 km (one way across France)
@@ -607,7 +609,7 @@ Once a fire gets larger than ~3 hectares, containment becomes much harder. Early
 The model is calibrated using:
 - 21,141 real French fire records (2025)
 - Rothermel fire behavior equations (physics-based)
-- IPCC Tier 1 carbon methodology
+- Pyronear CO2 Calculation document (IPCC Tier 2 approach)
 - Regional economic data from French agencies
 
 **Accuracy:** ±15-20% for similar fire conditions
