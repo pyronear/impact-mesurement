@@ -8,7 +8,7 @@
   "mathematical_model": {
     "spread_area_formula": "Area(t) = (π/2) × R_flank × (R_head + R_back) × t²",
     "escape_probability": "sigmoid(area_ha - threshold) where threshold ≈ 3 ha",
-    "carbon_emissions": "Area × Fuel_Load × Combustion_Fraction × 0.47 × (44/12)",
+    "carbon_emissions": "Area × tCO2_per_ha(vegetation) [pine 69.8, mixed 55, garrigue 25, grassland 10]",
     "economic_value": "Area × (Suppression_Cost + Asset_Value)"
   },
   "scenarios": {

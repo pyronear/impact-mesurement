@@ -161,10 +161,11 @@ Accounts for escape probability threshold. Small fires (<3 ha) are easily contai
 **Benefit:** More realistic than direct area alone—shows true impact on uncontrolled fire risk.
 
 #### **CO₂ Prevented**
-Using IPCC Tier 1 methodology:
-- Garrigue (Mediterranean scrub): 15.5 tCO₂/ha
-- Pine forest: 15.5 tCO₂/ha
-- Mixed forest: 10.2 tCO₂/ha
+Per-vegetation factors from the Pyronear CO2 Calculation document (IPCC Tier 2 approach):
+- Pine forest (coniferous): 69.8 tCO₂/ha
+- Mixed forest: 55 tCO₂/ha
+- Garrigue (Mediterranean scrub): 25 tCO₂/ha
+- Grassland: 10 tCO₂/ha
 
 #### **Economic Value Protected**
 Real-world costs calibrated from BDIFF historical data:
@@ -213,7 +214,7 @@ Early detection prevents cross-threshold, drastically reducing uncontrolled fire
 
 #### 3. Impact Conversions
 Once hectares saved calculated:
-- **Carbon:** Fuel load × combustion efficiency × IPCC coefficients
+- **Carbon:** Hectares × per-vegetation tCO₂/ha factor
 - **Economics:** Real-world costs (suppression + assets per hectare)
 - **Buildings:** Population density estimation
 

@@ -150,13 +150,18 @@ Critical threshold: ~3 hectares
 Above this, containment probability drops significantly
 ```
 
-### Carbon Emissions (IPCC Tier 1)
+### Carbon Emissions (IPCC Tier 2 approach)
 ```
-tCO2/ha = Fuel_Load × Combustion_Fraction × 0.47 × (44/12)
+tCO2 = Area_saved × tCO2_per_ha(vegetation)
 
-Pine forest (~garrigue): ~15.5 tCO2/ha burned
-Mixed forest: ~10.2 tCO2/ha burned
+Pine forest (coniferous): 69.8 tCO2/ha burned (range 50-90)
+Mixed forest:             55   tCO2/ha burned (range 40-70)
+Garrigue / maquis:        25   tCO2/ha burned (range 15-35)
+Grassland:                10   tCO2/ha burned (range 5-15)
 ```
+Values are range midpoints from the Pyronear "CO2 Calculation" document
+(Emissions = A × MB × Cf × EF_CO2, CORINE Land Cover classes). Gross emissions
+only: post-fire regrowth and soil carbon are not modelled.
 
 ### Economic Impact
 ```
@@ -281,7 +286,7 @@ with open('wildfire_impact_model.json') as f:
 
 **Model Basis:**
 - Elliptical fire spread: Based on Rothermel's fire behavior prediction system
-- IPCC Tier 1 carbon accounting: UNFCCC methodologies
+- Carbon accounting: Pyronear "CO2 Calculation" document (IPCC Tier 2 approach, per-vegetation tCO2/ha)
 - Escape probability: Empirical sigmoid model calibrated to containment thresholds
 - French economics: IGN asset valuations + regional suppression cost data
 
