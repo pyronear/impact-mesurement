@@ -132,7 +132,7 @@ def calculate_impact():
                 'wind_category': impact['wind_category'],
                 'suppression_cost_per_ha': impact.get('suppression_cost_per_ha', 0),
                 'asset_value_per_ha': impact.get('asset_value_per_ha', 0),
-                'cost_source': impact.get('cost_source', 'BDIFF historical'),
+                'cost_source': impact.get('cost_source', 'ASSUMPTION (unsourced placeholder)'),
             }
         })
     

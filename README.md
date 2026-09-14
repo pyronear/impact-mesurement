@@ -285,10 +285,33 @@ with open('wildfire_impact_model.json') as f:
 - Granularity: Commune-level (France-wide)
 
 **Model Basis:**
-- Elliptical fire spread: Based on Rothermel's fire behavior prediction system
+- Elliptical fire spread: constant-rate elliptical growth model (Van Wagner
+  1969, "A simple fire-growth model"; length-to-breadth ratios per Anderson
+  1983 / Alexander 1985). This document previously incorrectly attributed
+  this to Rothermel (1972), which describes rate-of-spread itself, not the
+  resulting area-over-time ellipse; that has been corrected. The model also
+  assumes steady-state spread from ignition with no build-up/acceleration
+  phase, which overstates early fire area - see the docstring of
+  `calculate_fire_area` in `wildfire_impact_calculator.py`.
 - Carbon accounting: Pyronear "CO2 Calculation" document (IPCC Tier 2 approach, per-vegetation tCO2/ha)
-- Escape probability: Empirical sigmoid model calibrated to containment thresholds
-- French economics: IGN asset valuations + regional suppression cost data
+- Escape probability: a heuristic sigmoid, **not** empirically calibrated.
+  BDIFF only records final burned area (no initial-attack-size field), so the
+  previous claim that this was "empirically calibrated to containment
+  thresholds" was inaccurate and has been removed. See
+  `calculate_escape_probability`'s docstring for the full caveat.
+- Spread rates (`SPREAD_RATES`), wind-class thresholds (`get_wind_category`),
+  department→vegetation mapping (`get_vegetation_type`), and
+  department→escape-fire-size (`get_avg_escaped_fire_size_ha`) all have
+  documented sourcing status (some data-derived from `Incendies.csv`, some
+  explicitly labelled `ASSUMPTION`) in the corresponding function/constant
+  docstrings in `wildfire_impact_calculator.py`. See that module's top-level
+  docstring for a summary.
+- French economics (suppression cost / asset value per hectare): **not**
+  sourced from IGN or regional suppression-cost data - that claim was
+  inaccurate. These are unsourced placeholder ASSUMPTIONS pending a real
+  cited source (e.g. SDIS/DGSCGC budgets, Cour des comptes reviews, ONF/DDT
+  valuations, FFA insurance statistics). See `real_world_costs.py`'s module
+  docstring and `FALLBACK_COSTS`.
 
 ---
 

@@ -73,11 +73,11 @@ scenarios = calc.scenario_analysis(
 print("\nMinutes Saved | Direct Ha | Risk-Adj Ha | CO2 (tCO2) | Economic Value")
 print("-" * 75)
 for idx, row in scenarios.iterrows():
-    mins = int(row['minutes_saved'])
-    direct = row['direct_area_saved_ha']
-    risk_adj = row['risk_adjusted_ha_saved']
-    co2 = row['tco2_emissions_prevented']
-    econ = row['economic_value_avoided_euros']
+    mins = int(row['Minutes Saved'])
+    direct = row['Ha Saved (Direct)']
+    risk_adj = row['Ha Saved (Risk-Adjusted)']
+    co2 = row['tCO2 Avoided']
+    econ = row['€ Value Avoided']
     print(f"      {mins:2d}    |   {direct:6.2f}   |   {risk_adj:6.2f}    |  {co2:6.1f}   |  €{econ:12,.0f}")
 
 print("\n" + "="*80)
