@@ -48,24 +48,17 @@ SPREAD_RATES = {
     }
 }
 
-# Fuel load and combustion factors (IPCC Tier 1)
-FUEL_CHARACTERISTICS = {
-    'pine_forest_dry': {
-        'fuel_load_tDM_per_ha': 20.0,  # tonnes dry matter per hectare
-        'combustion_fraction': 0.45,
-    },
-    'garrigue_maquis': {
-        'fuel_load_tDM_per_ha': 12.0,
-        'combustion_fraction': 0.50,
-    },
-    'grassland': {
-        'fuel_load_tDM_per_ha': 3.0,
-        'combustion_fraction': 0.80,
-    },
-    'mixed_forest': {
-        'fuel_load_tDM_per_ha': 15.0,
-        'combustion_fraction': 0.40,
-    }
+# CO2 emitted per hectare burned, by vegetation type (tCO2/ha).
+# Source: Pyronear, "Pyronear CO2 Calculation" (IPCC Tier 2 approach,
+# Emissions = A × MB × Cf × EF_CO2, with CORINE Land Cover classes).
+# Values are the midpoints of the ranges given in that document, except
+# pine_forest_dry which uses its worked example (85 t/ha × 0.52 × 1.58).
+# Gross emissions only: post-fire regrowth and soil carbon are not modelled.
+TCO2_PER_HA = {
+    'pine_forest_dry': 69.8,   # CORINE 3.1.2 coniferous forest, range 50-90
+    'garrigue_maquis': 25.0,   # CORINE 3.2.3 sclerophyllous vegetation, range 15-35
+    'grassland': 10.0,         # CORINE 3.2.1 natural grassland, range 5-15
+    'mixed_forest': 55.0,      # CORINE 3.1.3 mixed forest, range 40-70
 }
 
 # Economic factors by region (France)
@@ -224,15 +217,7 @@ class WildfireImpactCalculator:
         effective_ha_saved = delta_area_initial + (delta_p_escape * avg_escaped_ha)
         
         # Step 4: Convert to impacts
-        fuel_chars = FUEL_CHARACTERISTICS.get(
-            vegetation_type, FUEL_CHARACTERISTICS['mixed_forest']
-        )
-        fuel_load = fuel_chars['fuel_load_tDM_per_ha']
-        comb_frac = fuel_chars['combustion_fraction']
-        
-        # Carbon: IPCC Tier 1 method
-        # tCO2 = Area × Fuel Load × Combustion Fraction × Carbon Content (0.47) × (44/12 CO2 ratio)
-        tCO2_per_ha = fuel_load * comb_frac * 0.47 * (44.0 / 12.0)
+        tCO2_per_ha = TCO2_PER_HA.get(vegetation_type, TCO2_PER_HA['mixed_forest'])
         tCO2_saved = effective_ha_saved * tCO2_per_ha
         
         # Economics - use real-world data where available
