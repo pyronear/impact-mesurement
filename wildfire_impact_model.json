@@ -1,0 +1,103 @@
+{
+  "model_name": "WildfireEarlyDetectionImpact",
+  "version": "1.0",
+  "description": "Physics-based model combining elliptical fire spread with escape threshold probability",
+  "data_source": "BDIFF (Base de Données Incendies Forêts France) 2025",
+  "fire_records": 21141,
+  "total_area_burned_ha": 31744,
+  "mathematical_model": {
+    "spread_area_formula": "Area(t) = (π/2) × R_flank × (R_head + R_back) × t²",
+    "escape_probability": "sigmoid(area_ha - threshold) where threshold ≈ 3 ha",
+    "carbon_emissions": "Area × Fuel_Load × Combustion_Fraction × 0.47 × (44/12)",
+    "economic_value": "Area × (Suppression_Cost + Asset_Value)"
+  },
+  "scenarios": {
+    "Mediterranean_HighRisk_15min": {
+      "minutes_saved": 15,
+      "vegetation_type": "garrigue_maquis",
+      "wind_category": "high",
+      "direct_area_saved_ha": 35.117,
+      "escape_probability_avoided": 0.0,
+      "risk_adjusted_ha_saved": 35.117,
+      "tco2_emissions_prevented": 363.11,
+      "economic_value_avoided_euros": 368725.59,
+      "buildings_protected": 35,
+      "response_time_standard_min": 45,
+      "response_time_early_min": 30
+    },
+    "CentralFrance_LowRisk_15min": {
+      "minutes_saved": 15,
+      "vegetation_type": "mixed_forest",
+      "wind_category": "moderate",
+      "direct_area_saved_ha": 6.097,
+      "escape_probability_avoided": 0.1324,
+      "risk_adjusted_ha_saved": 25.95,
+      "tco2_emissions_prevented": 268.32,
+      "economic_value_avoided_euros": 163482.05,
+      "buildings_protected": 7,
+      "response_time_standard_min": 45,
+      "response_time_early_min": 30
+    },
+    "Mediterranean_LowWind_10min": {
+      "minutes_saved": 10,
+      "vegetation_type": "garrigue_maquis",
+      "wind_category": "moderate",
+      "direct_area_saved_ha": 11.099,
+      "escape_probability_avoided": 0.0,
+      "risk_adjusted_ha_saved": 11.099,
+      "tco2_emissions_prevented": 114.76,
+      "economic_value_avoided_euros": 96559.44,
+      "buildings_protected": 11,
+      "response_time_standard_min": 45,
+      "response_time_early_min": 35
+    },
+    "National_Baseline_15min": {
+      "minutes_saved": 15,
+      "vegetation_type": "mixed_forest",
+      "wind_category": "moderate",
+      "direct_area_saved_ha": 6.097,
+      "escape_probability_avoided": 0.2009,
+      "risk_adjusted_ha_saved": 36.227,
+      "tco2_emissions_prevented": 374.59,
+      "economic_value_avoided_euros": 228232.96,
+      "buildings_protected": 10,
+      "response_time_standard_min": 45,
+      "response_time_early_min": 30
+    }
+  },
+  "sensitivity_ranges": {
+    "minutes_saved": [
+      5,
+      10,
+      15,
+      20,
+      30,
+      45
+    ],
+    "wind_speed_kmh": [
+      15,
+      25,
+      35,
+      45
+    ],
+    "response_time_minutes": [
+      30,
+      45,
+      60,
+      90
+    ],
+    "vegetation_types": [
+      "pine_forest_dry",
+      "garrigue_maquis",
+      "grassland",
+      "mixed_forest"
+    ]
+  },
+  "national_projection": {
+    "methodology": "Per-fire impact × 742 significant fires (≥5 ha)",
+    "hectares_protected_per_15min_detection": 32710,
+    "tco2_emissions_prevented_per_year": 338226,
+    "economic_value_protected_per_year": 206073916,
+    "buildings_protected_per_year": 9646
+  }
+}

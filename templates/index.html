@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wildfire Impact Calculator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <h1>⚡ RESCUE MISSION: Wildfire Impact Analysis System</h1>
+                <p>Advanced detection and rescue coordination platform • Optimizing emergency response impact analysis</p>
+            </div>
+        </header>
+
+        <main>
+            <!-- Dataset Section -->
+            <section class="panel dataset-panel">
+                <div class="panel-header">
+                    <h2>🎯 SYSTEM STATUS</h2>
+                </div>
+                <div class="panel-content">
+                    <div class="dataset-info" id="dataset-info">
+                        Loading dataset...
+                    </div>
+                    <div class="upload-section">
+                        <h3>Upload Custom Dataset</h3>
+                        <p>Upload a CSV file with fire data. Must include area and optional: department, vegetation type, fire cause</p>
+                        <div class="file-upload">
+                            <input type="file" id="file-input" accept=".csv" />
+                            <button onclick="uploadFile()" class="btn btn-primary">Upload CSV</button>
+                        </div>
+                        <div id="upload-status" class="status-message"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Calculator Section -->
+            <section class="panel calculator-panel">
+                <div class="panel-header">
+                    <h2>🔧 ANALYSIS ENGINE</h2>
+                </div>
+                <div class="panel-content">
+                    <div class="calculator-grid">
+                        <div class="form-group">
+                            <label for="minutes-saved">Minutes Saved by Early Detection:</label>
+                            <input type="number" id="minutes-saved" value="15" min="1" max="120" step="1">
+                            <span class="help-text">Time saved by early detection (minutes)</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="response-time">Standard Response Time (min):</label>
+                            <input type="number" id="response-time" value="45" min="10" max="180" step="5">
+                            <span class="help-text">Normal firefighter arrival time</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="wind-speed">Wind Speed (km/h):</label>
+                            <input type="number" id="wind-speed" value="25" min="0" max="100" step="5">
+                            <span class="help-text">Average wind speed during fire</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="temperature">Temperature (°C):</label>
+                            <input type="number" id="temperature" value="28" min="0" max="50" step="1">
+                            <span class="help-text">Air temperature</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="humidity">Relative Humidity (%):</label>
+                            <input type="number" id="humidity" value="35" min="0" max="100" step="5">
+                            <span class="help-text">Relative humidity percentage</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="department">Department:</label>
+                            <select id="department">
+                                <option value="default">Default (National Average)</option>
+                            </select>
+                            <span class="help-text">French department or region</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="vegetation">Vegetation Type:</label>
+                            <select id="vegetation">
+                                <option value="">Auto-detect</option>
+                                <option value="pine_forest_dry">Pine Forest (Dry)</option>
+                                <option value="garrigue_maquis">Garrigue/Maquis</option>
+                                <option value="grassland">Grassland</option>
+                                <option value="mixed_forest">Mixed Forest</option>
+                            </select>
+                            <span class="help-text">Type of vegetation/forest</span>
+                        </div>
+                    </div>
+
+                    <button onclick="calculateImpact()" class="btn btn-large btn-primary">📈 Calculate Impact</button>
+                </div>
+            </section>
+
+            <!-- Results Section -->
+            <section class="panel results-panel" id="results-panel" style="display:none;">
+                <div class="panel-header">
+                    <h2>📋 Results</h2>
+                </div>
+                <div class="panel-content">
+                    <div class="results-grid">
+                        <div class="result-card">
+                            <div class="result-label">Direct Area Saved</div>
+                            <div class="result-value" id="result-direct">0.00</div>
+                            <div class="result-unit">hectares</div>
+                        </div>
+
+                        <div class="result-card">
+                            <div class="result-label">Risk-Adjusted Saved</div>
+                            <div class="result-value" id="result-total">0.00</div>
+                            <div class="result-unit">hectares</div>
+                        </div>
+
+                        <div class="result-card">
+                            <div class="result-label">CO₂ Prevented</div>
+                            <div class="result-value" id="result-co2">0</div>
+                            <div class="result-unit">tCO₂</div>
+                        </div>
+
+                        <div class="result-card">
+                            <div class="result-label">Economic Value</div>
+                            <div class="result-value" id="result-value">€0</div>
+                            <div class="result-unit">protected</div>
+                        </div>
+
+                        <div class="result-card">
+                            <div class="result-label">Buildings Protected</div>
+                            <div class="result-value" id="result-buildings">0</div>
+                            <div class="result-unit">structures</div>
+                        </div>
+
+                        <div class="result-card">
+                            <div class="result-label">Vegetation Type</div>
+                            <div class="result-value" id="result-veg" style="font-size: 0.9em;">-</div>
+                            <div class="result-unit">category</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Scenario Analysis Section -->
+            <section class="panel scenario-panel" id="scenario-panel" style="display:none;">
+                <div class="panel-header">
+                    <h2>🔍 Scenario Comparison</h2>
+                </div>
+                <div class="panel-content">
+                    <button onclick="generateScenarios()" class="btn btn-secondary">Compare Scenarios</button>
+                    <div id="scenario-table-container" style="margin-top: 20px;"></div>
+                    <div style="margin-top: 20px;">
+                        <canvas id="scenario-chart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Export Section -->
+            <section class="panel export-panel" id="export-panel" style="display:none;">
+                <div class="panel-header">
+                    <h2>💾 Export Results</h2>
+                </div>
+                <div class="panel-content">
+                    <button onclick="exportResults()" class="btn btn-secondary">Download as CSV</button>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Wildfire Impact Calculator v1.0 | Based on BDIFF (French Forest Fire Database) | © 2026</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

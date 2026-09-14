@@ -1,0 +1,303 @@
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                                                                              ║
+║        📚 WILDFIRE CALCULATOR DOCUMENTATION VISUAL MAP 📚                    ║
+║                                                                              ║
+║            How all documents connect to help you get started               ║
+║                                                                              ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+
+                         🎯 START HERE 🎯
+                              │
+                              │
+           ┌──────────────────┼──────────────────┐
+           │                  │                  │
+           ▼                  ▼                  ▼
+    ┌─────────────────┐  ┌──────────────────┐  ┌──────────────┐
+    │  New User?      │  │ Want Full Tech?  │  │  Need Help?  │
+    │  (60-90 min)    │  │  (45+ min)       │  │  (5 min)     │
+    └─────────────────┘  └──────────────────┘  └──────────────┘
+           │                  │                  │
+           ▼                  ▼                  ▼
+    GETTING_STARTED.md    README.md         DOCUMENTATION_MAP.txt
+           │                  │                  │
+           │                  │                  └─── Shows "I want X"
+           │                  │                       → Read file Y
+           │                  │
+           │                  ├─── Python API         
+           │                  ├─── Math Model
+           │                  └─── Output Files
+           │
+           ├─ Quick Path: Option 1, 2, or 3
+           ├─ How It Works (explained simply)
+           ├─ Real-World Costs overview
+           ├─ Common Issues & Solutions
+           └─ Learning Paths for different levels
+
+
+                    🌳 COMPLETE DOCUMENTATION TREE 🌳
+
+
+START HERE (Pick One)
+─────────────────────
+
+    GETTING_STARTED.md ⭐ RECOMMENDED
+    │
+    ├─ Quick Navigation (Choose your path)
+    │  ├─ Option 1: Web App (60 sec to running)
+    │  ├─ Option 2: Batch (2 min to results)
+    │  └─ Option 3: Python (5 min to code)
+    │
+    ├─ How It Works
+    │  ├─ Fire Spread Physics (elliptical model)
+    │  ├─ Escape Probability (sigmoid curve)
+    │  ├─ Carbon Emissions (IPCC method)
+    │  └─ Economic Value (real-world costs)
+    │
+    ├─ Understanding Results
+    │  ├─ Hectares Saved
+    │  ├─ CO₂ Prevented
+    │  ├─ Economic Value Protected
+    │  └─ Buildings Protected
+    │
+    ├─ Real-World Cost Data (summary)
+    │  └─ [See REAL_WORLD_COSTS.md for deep dive]
+    │
+    ├─ Common Issues & Solutions
+    │  └─ "Port in use?" "Module not found?" etc.
+    │
+    └─ Learning Paths by experience level
+
+
+DETAILED REFERENCES
+───────────────────
+
+    README.md (Technical Deep Dive)
+    │
+    ├─ Project Structure Overview
+    ├─ Python API Reference
+    │  ├─ WildfireImpactCalculator class
+    │  ├─ calculate_impact() method
+    │  ├─ scenario_analysis() method
+    │  └─ Code examples
+    ├─ Mathematical Model (Full Equations)
+    │  ├─ Elliptical Fire Spread Formula
+    │  ├─ Escape Probability (Sigmoid)
+    │  ├─ Carbon Emissions (IPCC Tier 1)
+    │  └─ Economic Impact
+    ├─ Output Files Description
+    │  ├─ wildfire_impact_results.csv
+    │  ├─ wildfire_impact_model.json
+    │  └─ API responses
+    ├─ Sensitivity Analysis
+    │  └─ Wind speed, detection time, region
+    └─ Results Interpretation
+
+
+    USER_GUIDE.md (Complete End-User Reference)
+    │
+    ├─ Overview (what it does)
+    ├─ How It Works (beginner-friendly version)
+    ├─ Getting Started (gentle intro)
+    ├─ Using the Web Interface (step-by-step)
+    ├─ Understanding Results (detailed explanation)
+    ├─ Real-World Cost Data Sources ⭐ DETAILED
+    │  ├─ BDIFF data source (21,141 fires)
+    │  ├─ Suppression costs (€1,800-2,500/ha)
+    │  ├─ Asset values (€4,500-8,000/ha)
+    │  ├─ Department breakdown table
+    │  ├─ Confidence levels
+    │  └─ Cost verification FAQ
+    ├─ Advanced Features
+    │  ├─ Scenario comparison
+    │  ├─ CSV upload
+    │  └─ Export functionality
+    └─ FAQ & Troubleshooting (50+ common questions)
+
+
+QUICK REFERENCES
+────────────────
+
+    QUICK_START.txt (2-Page Cheat Sheet)
+    ├─ Dataset overview
+    ├─ Quick run commands
+    ├─ Key results numbers
+    ├─ Model equations
+    └─ Sensitivity summary
+
+    START_HERE.txt (Orientation)
+    ├─ What you have overview
+    ├─ Three usage options
+    ├─ File directory
+    └─ Status checklist
+
+    DOCUMENTATION_MAP.txt (Question Lookup)
+    ├─ "I want to X" → "Read file Y"
+    ├─ Reading paths by experience level
+    └─ Quick reference by topic
+
+    README_DOCUMENTATION.txt (Visual Index)
+    ├─ All documentation files listed
+    ├─ Descriptions of each
+    └─ Size & read time
+
+
+SPECIALIZED DOCUMENTATION
+──────────────────────────
+
+    WEBAPP_GUIDE.md (Interactive Dashboard)
+    │
+    ├─ Getting Started with Flask
+    ├─ Feature Walkthrough
+    │  ├─ Dataset Management
+    │  ├─ Impact Calculator
+    │  ├─ Results Display
+    │  ├─ Scenario Analysis
+    │  └─ Export
+    ├─ Project Structure (Flask-specific)
+    ├─ API Endpoints
+    └─ Troubleshooting (Flask issues)
+
+
+    REAL_WORLD_COSTS.md (Cost Methodology)
+    │
+    ├─ BDIFF Data Source
+    │  └─ 21,141 fire records, 31,744 hectares
+    ├─ Cost Calibration
+    │  ├─ Suppression costs by region
+    │  ├─ Asset values by type
+    │  └─ Insurance adjustments
+    ├─ API Integration Framework
+    │  ├─ Eurostat (optional)
+    │  ├─ data.gouv.fr (optional)
+    │  └─ World Bank (optional)
+    ├─ Confidence Levels & Limitations
+    └─ Cost Verification Process
+
+
+    INTEGRATION_SUMMARY.md (Developer Implementation)
+    │
+    ├─ System Architecture
+    ├─ Real-World Cost Integration Walkthrough
+    ├─ Live API Examples (actual JSON)
+    ├─ Testing Methodology
+    ├─ Production Deployment
+    └─ Error Handling
+
+
+VISUAL DESIGN DOCUMENTATION
+────────────────────────────
+
+    IRON_MAN_THEME.md (Design Philosophy)
+    │
+    ├─ Design Overview
+    │  └─ Arc Reactor inspiration
+    ├─ Color Palette
+    │  ├─ Gold (#d4af37)
+    │  ├─ Red (#8b0000)
+    │  ├─ Dark Background (#0d0d0d)
+    │  └─ Light Text (#f0f0f0)
+    ├─ Color Psychology & Accessibility
+    ├─ Animation Design
+    │  ├─ Arc Reactor pulse
+    │  ├─ Glow effects
+    │  └─ Hover states
+    └─ WCAG Accessibility Compliance
+
+
+    THEME_UPDATE_SUMMARY.md (CSS/HTML Changelog)
+    │
+    ├─ Detailed CSS Modifications
+    ├─ HTML Structure Changes
+    ├─ Before/After Comparisons
+    ├─ Animation Definitions
+    └─ Color Implementation
+
+
+LEGACY/SUPPLEMENTARY
+────────────────────
+
+    VISUAL_GUIDE.txt
+    └─ Step-by-step screenshots & walkthrough
+
+    WEBAPP_SUMMARY.txt
+    └─ Feature summary table
+
+    DOCUMENTATION_SUMMARY.txt ⭐ OVERVIEW
+    └─ What was done & verification checklist
+
+
+═══════════════════════════════════════════════════════════════════════════════
+
+🎯 HOW TO USE THIS MAP
+
+1. "I just got this project. Where do I start?"
+   → Go to: GETTING_STARTED.md
+
+2. "I found a problem. Where's help?"
+   → Go to: DOCUMENTATION_MAP.txt
+      Tell it what you want, it tells you which file!
+
+3. "I want to understand everything"
+   → Path 1: GETTING_STARTED.md (quick overview)
+   → Path 2: README.md (technical deep dive)
+   → Path 3: USER_GUIDE.md (comprehensive reference)
+
+4. "I need specific information about [topic]"
+   → Look at this tree to find the branch
+   → Open the file listed under that branch
+   → Use Ctrl+F to search within that file
+
+5. "I'm using the web app and have questions"
+   → First: GETTING_STARTED.md → Option 1
+   → Then: WEBAPP_GUIDE.md → Features section
+   → Stuck?: USER_GUIDE.md → FAQ & Troubleshooting
+
+6. "I want to integrate this into my system"
+   → First: README.md (API reference)
+   → Then: INTEGRATION_SUMMARY.md (examples)
+   → Details?: REAL_WORLD_COSTS.md (cost integration)
+
+7. "I want to change the colors/theme"
+   → First: IRON_MAN_THEME.md (design overview)
+   → Then: THEME_UPDATE_SUMMARY.md (CSS breakdown)
+   → Edit: static/css/style.css (with docs open)
+
+
+═══════════════════════════════════════════════════════════════════════════════
+
+✨ DOCUMENTATION PRINCIPLES
+
+🎯 CLEAR ENTRY POINT
+   GETTING_STARTED.md is clearly marked as the starting point
+   All other docs are referenced FROM it, not instead of it
+
+🎯 MULTIPLE PATHS
+   Beginners: Quick start (5 min) → Using (ongoing)
+   Learners:  Overview (15 min) → Understanding (30 min) → Deep dive (as needed)
+   Developers: Tech ref (45 min) → Integration (60+ min) → Production (ongoing)
+
+🎯 NO ORPHANED CONTENT
+   Every file serves a purpose
+   Every file links to related files
+   No circular dependencies
+
+🎯 ORGANIZED BY PURPOSE, NOT BY SIZE
+   Small docs for quick answers
+   Large docs for comprehensive reference
+   Specialized docs for domain expertise
+
+🎯 CROSS-REFERENCES EVERYWHERE
+   Links between documents
+   "For more on X, see FILE.md"
+   Visual indicators (⭐ recommended, → next step)
+
+🎯 CLEAR NAVIGATION
+   This tree shows structure
+   DOCUMENTATION_MAP.txt shows "question → file"
+   README_DOCUMENTATION.txt shows "file → description"
+
+
+═══════════════════════════════════════════════════════════════════════════════
+Last updated: September 2026
+This map will help you navigate the documentation quickly and efficiently

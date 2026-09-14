@@ -1,0 +1,430 @@
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                                                                              ║
+║            WILDFIRE IMPACT CALCULATOR - DOCUMENTATION INDEX                  ║
+║                                                                              ║
+║                     Complete Guide to All Documentation                      ║
+║                                                                              ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+═══════════════════════════════════════════════════════════════════════════════
+
+📚 DOCUMENTATION FILES GUIDE
+
+Below is a complete index of all documentation. Choose based on your needs:
+
+═══════════════════════════════════════════════════════════════════════════════
+
+🎯 IF YOU'RE NEW - START HERE
+═════════════════════════════════════════════════════════════════════════════
+
+1. START_HERE.txt (This is a good entry point!)
+   ├─ What you have and what it does
+   ├─ Quick start instructions (5 minutes)
+   ├─ File structure overview
+   ├─ Common questions
+   └─ Next steps
+
+2. USER_GUIDE.md (Complete usage manual)
+   ├─ Detailed overview of the system
+   ├─ How the science works (elliptical model, escape threshold)
+   ├─ Step-by-step web interface tutorial
+   ├─ Understanding results
+   ├─ Two example walkthroughs
+   ├─ FAQ with 10+ questions
+   └─ Architecture explanation
+
+3. VISUAL_GUIDE.txt (How it looks and works)
+   ├─ ASCII diagrams of the web interface
+   ├─ Fire growth model visualization
+   ├─ Step-by-step workflow with diagrams
+   ├─ Understanding results section
+   ├─ Real-world application examples
+   └─ Key scientific insights
+
+═══════════════════════════════════════════════════════════════════════════════
+
+⚡ IF YOU WANT TO USE IT RIGHT NOW
+════════════════════════════════════════════════════════════════════════════════
+
+1. QUICK_START.txt (2-page reference)
+   ├─ Installation command
+   ├─ Key findings (pre-calculated results)
+   ├─ Sensitivity analysis tables
+   ├─ Model equations
+   └─ Running instructions
+
+2. RUN_WEBAPP.sh (Launcher script)
+   └─ Just run: ./RUN_WEBAPP.sh
+   Then open: http://localhost:5000
+
+═══════════════════════════════════════════════════════════════════════════════
+
+📖 IF YOU WANT TO UNDERSTAND THE DETAILS
+═════════════════════════════════════════════════════════════════════════════════
+
+1. README.md (Overview and reference)
+   ├─ Mathematical model explanation
+   ├─ Parameter reference
+   ├─ Regional classifications
+   ├─ Technical details
+   ├─ Performance benchmarks
+   └─ File manifest
+
+2. WEBAPP_GUIDE.md (Web app documentation)
+   ├─ Getting started
+   ├─ Features breakdown
+   ├─ Backend routes
+   ├─ Frontend components
+   ├─ Data format requirements
+   ├─ How it works (step-by-step)
+   ├─ API response examples
+   ├─ Deployment options
+   ├─ Troubleshooting
+   └─ Customization guide
+
+3. WEBAPP_SUMMARY.txt (Technical overview)
+   ├─ What's included (code, data, docs)
+   ├─ Quick start
+   ├─ Main features
+   ├─ Technology stack
+   ├─ Dependencies
+   ├─ Usage workflows
+   ├─ Example scenarios
+   └─ Deployment checklist
+
+═══════════════════════════════════════════════════════════════════════════════
+
+💾 IF YOU WANT TO USE IT PROGRAMMATICALLY (Python)
+═════════════════════════════════════════════════════════════════════════════════
+
+1. wildfire_impact_calculator.py (Reusable class)
+   
+   Main Class: WildfireImpactCalculator
+   
+   Usage Example:
+   
+   from wildfire_impact_calculator import WildfireImpactCalculator
+   
+   # Initialize with data
+   calc = WildfireImpactCalculator('Incendies.csv')
+   
+   # Single calculation
+   impact = calc.calculate_impact(
+       x_minutes_saved=15,
+       t0_response_time=45,
+       wind_speed_kmh=35,
+       dept='06',
+       vegetation_type='garrigue_maquis'
+   )
+   
+   # Results
+   print(f"Ha saved: {impact['risk_adjusted_ha_saved']}")
+   print(f"Value: €{impact['economic_value_avoided_euros']}")
+   
+   # Scenario analysis
+   df = calc.scenario_analysis(
+       minutes_saved_list=[5, 10, 15, 20, 30],
+       dept='13'
+   )
+
+2. generate_impact_report.py (Batch processing)
+   
+   Usage:
+   python3 generate_impact_report.py
+   
+   Generates:
+   • Full console report
+   • CSV results file
+   • National projections
+   • Regional analysis
+
+═══════════════════════════════════════════════════════════════════════════════
+
+🔧 IF YOU WANT TO MODIFY OR DEPLOY
+═════════════════════════════════════════════════════════════════════════════════
+
+1. WEBAPP_GUIDE.md → "Customization" section
+   ├─ Changing default parameters
+   ├─ Modifying colors
+   ├─ Adding vegetation types
+   ├─ Adjusting economic factors
+   └─ Deployment to production
+
+2. Code Files
+   ├─ app.py - Flask backend (modify routes/endpoints)
+   ├─ templates/index.html - HTML structure
+   ├─ static/css/style.css - Styling
+   ├─ static/js/app.js - Frontend logic
+   └─ wildfire_impact_calculator.py - Calculation engine
+
+3. Configuration
+   ├─ requirements-webapp.txt - Python packages
+   ├─ .env (create if needed) - Environment variables
+   └─ uploads/ - Directory for user uploads
+
+═══════════════════════════════════════════════════════════════════════════════
+
+📊 IF YOU WANT TO UNDERSTAND THE DATA
+════════════════════════════════════════════════════════════════════════════════
+
+1. Incendies.csv (Main dataset)
+   └─ 21,141 fire records from BDIFF 2025
+      ├─ Year, Fire ID, Department
+      ├─ Location (commune, INSEE code)
+      ├─ Burned area (by land type)
+      ├─ Fire date/time
+      ├─ Fire cause/nature
+      ├─ Building/casualty data
+      └─ Data precision indicators
+
+2. Définitions.pdf (Data glossary)
+   └─ Field definitions in French
+      ├─ What each column means
+      ├─ Data units
+      ├─ Possible values
+      └─ Special codes
+
+3. README.md → "Data Format Requirements" section
+   └─ How to prepare custom data
+
+═══════════════════════════════════════════════════════════════════════════════
+
+🎓 DOCUMENTATION BY TOPIC
+═════════════════════════════════════════════════════════════════════════════════
+
+GETTING STARTED
+───────────────
+1. START_HERE.txt
+2. QUICK_START.txt
+3. USER_GUIDE.md (Overview section)
+
+WEB APP USAGE
+─────────────
+1. USER_GUIDE.md (Using the Web Interface section)
+2. VISUAL_GUIDE.txt (Step-by-step workflow)
+3. WEBAPP_GUIDE.md (Features section)
+
+MATHEMATICAL MODEL
+───────────────────
+1. USER_GUIDE.md (How It Works section)
+2. README.md (Mathematical Model section)
+3. VISUAL_GUIDE.txt (Fire Growth Model section)
+
+RESULTS INTERPRETATION
+──────────────────────
+1. USER_GUIDE.md (Understanding Results section)
+2. VISUAL_GUIDE.txt (Understanding Results section)
+3. README.md (Results Summary section)
+
+EXAMPLE CALCULATIONS
+────────────────────
+1. USER_GUIDE.md (Example Walkthroughs)
+2. VISUAL_GUIDE.txt (Real-World Applications)
+3. QUICK_START.txt (Example Scenarios)
+
+PROGRAMMING / API
+──────────────────
+1. WEBAPP_GUIDE.md (API Endpoints section)
+2. wildfire_impact_calculator.py (docstrings)
+3. wildfire_impact_model.json (API spec)
+
+DEPLOYMENT
+───────────
+1. WEBAPP_GUIDE.md (Deployment Options section)
+2. README.md (Production Deployment section)
+3. WEBAPP_SUMMARY.txt (Deployment Checklist)
+
+═══════════════════════════════════════════════════════════════════════════════
+
+📋 FILE SIZE REFERENCE
+════════════════════════════════════════════════════════════════════════════════
+
+DOCUMENTATION
+  START_HERE.txt              14 KB  ← Entry point
+  USER_GUIDE.md              17 KB  ← Comprehensive usage guide
+  VISUAL_GUIDE.txt            17 KB  ← With ASCII diagrams
+  README.md                    9 KB  ← Overview & reference
+  QUICK_START.txt              7 KB  ← 2-page reference
+  WEBAPP_GUIDE.md             15 KB  ← Technical details
+  WEBAPP_SUMMARY.txt          15 KB  ← Feature list
+  DOCUMENTATION_INDEX.txt      8 KB  ← This file
+  ────────────────────────────
+  TOTAL DOCUMENTATION:      ~ 100 KB
+
+DATA
+  Incendies.csv             2,400 KB  ← Fire dataset
+  Définitions.pdf             447 KB  ← Data glossary
+  Mention légales.pdf         180 KB  ← Legal terms
+
+CODE
+  app.py                      10 KB  ← Flask backend
+  wildfire_impact_calculator.py 14 KB  ← Calculation engine
+  generate_impact_report.py     9 KB  ← Report generator
+  templates/index.html          9 KB  ← Dashboard HTML
+  static/css/style.css          7 KB  ← Styling
+  static/js/app.js             12 KB  ← Frontend logic
+  ────────────────────────────
+  TOTAL CODE:              ~ 60 KB
+
+═══════════════════════════════════════════════════════════════════════════════
+
+🎯 QUICK NAVIGATION
+
+Question                              → Document to Read
+──────────────────────────────────────────────────────────────────────────
+"What is this?"                       → START_HERE.txt
+"How do I run it?"                    → QUICK_START.txt or WEBAPP_GUIDE.md
+"How do I use the web app?"           → USER_GUIDE.md
+"Show me visually how it works"       → VISUAL_GUIDE.txt
+"What are the key results?"           → QUICK_START.txt
+"What's the math?"                    → USER_GUIDE.md or README.md
+"How do I upload my data?"            → USER_GUIDE.md or VISUAL_GUIDE.txt
+"Can I use it in my Python code?"     → wildfire_impact_calculator.py
+"How do I deploy to production?"      → WEBAPP_GUIDE.md
+"What are the API endpoints?"         → WEBAPP_GUIDE.md
+"I'm stuck, what do I do?"            → USER_GUIDE.md (FAQ section)
+"I want to customize it"              → WEBAPP_GUIDE.md (Customization)
+
+═══════════════════════════════════════════════════════════════════════════════
+
+✅ READING PATHS (Choose Your Level)
+
+BEGINNER PATH (30 minutes)
+──────────────────────────
+1. START_HERE.txt (5 min)
+   → Understand what it is
+   
+2. Run: ./RUN_WEBAPP.sh
+   → Experience the app
+   
+3. VISUAL_GUIDE.txt (10 min)
+   → See how it works
+   
+4. Try: Click Calculate with default settings
+   → See results
+
+INTERMEDIATE PATH (1.5 hours)
+─────────────────────────────
+1. QUICK_START.txt (10 min)
+   → Key concepts and results
+   
+2. USER_GUIDE.md (45 min)
+   → Complete usage guide
+   
+3. Run examples (20 min)
+   → Try different scenarios
+   
+4. VISUAL_GUIDE.txt (15 min)
+   → Reinforce understanding
+
+ADVANCED PATH (3+ hours)
+────────────────────────
+1. README.md (30 min)
+   → Mathematical model details
+   
+2. WEBAPP_GUIDE.md (30 min)
+   → Technical architecture
+   
+3. Code Review (30 min)
+   → wildfire_impact_calculator.py
+   
+4. API Exploration (30 min)
+   → Try API endpoints directly
+   
+5. Customization (60+ min)
+   → Modify and extend
+
+═══════════════════════════════════════════════════════════════════════════════
+
+💡 TIPS
+
+1. All documentation is LOCAL
+   → No internet required to read
+   → Available offline
+   
+2. Open with any text editor
+   → .txt files: Any editor (Notepad, VS Code, etc.)
+   → .md files: GitHub, VS Code, or markdown viewer
+   
+3. Search within files
+   → Ctrl+F (Windows/Linux) or Cmd+F (Mac)
+   → Search for key terms
+   
+4. Start with visual guide if you prefer diagrams
+   → VISUAL_GUIDE.txt has ASCII art
+   → Shows interface and workflows
+   
+5. Use examples to learn
+   → USER_GUIDE.md has 3 detailed examples
+   → VISUAL_GUIDE.txt has real-world use cases
+
+═══════════════════════════════════════════════════════════════════════════════
+
+🔍 FINDING SPECIFIC INFORMATION
+
+To find information about:
+
+Wind speed effects       → USER_GUIDE.md (Sensitivity Analysis)
+                          VISUAL_GUIDE.txt (Key Insights)
+
+Escape threshold        → README.md (Escape Probability)
+                          USER_GUIDE.md (How It Works)
+                          VISUAL_GUIDE.txt (Fire Growth Model)
+
+CSV upload format       → WEBAPP_GUIDE.md (Data Format Requirements)
+                          USER_GUIDE.md (Step 2)
+
+API endpoints           → WEBAPP_GUIDE.md (API Endpoints)
+                          wildfire_impact_model.json
+
+Regional differences    → USER_GUIDE.md (Examples)
+                          README.md (Regional Classifications)
+
+Deploying to cloud      → WEBAPP_GUIDE.md (Deployment Options)
+
+Modifying the code      → WEBAPP_GUIDE.md (Customization)
+                          wildfire_impact_calculator.py docstrings
+
+═══════════════════════════════════════════════════════════════════════════════
+
+📞 STILL NEED HELP?
+
+1. Check FAQ in USER_GUIDE.md
+   → 10+ common questions answered
+
+2. Review example walkthroughs
+   → USER_GUIDE.md has 3 complete examples
+   
+3. Try with default data
+   → BDIFF 2025 dataset is pre-loaded
+   → Click Calculate without changing anything
+   
+4. Check troubleshooting section
+   → WEBAPP_GUIDE.md has solutions for common problems
+
+═══════════════════════════════════════════════════════════════════════════════
+
+SUMMARY
+
+You have 3 types of documentation:
+
+1. GETTING STARTED
+   └─ START_HERE.txt, QUICK_START.txt, USER_GUIDE.md
+
+2. TECHNICAL REFERENCE  
+   └─ README.md, WEBAPP_GUIDE.md, wildfire_impact_calculator.py
+
+3. VISUAL EXPLANATIONS
+   └─ VISUAL_GUIDE.txt
+
+Pick based on your need, and enjoy exploring the Wildfire Impact Calculator!
+
+═══════════════════════════════════════════════════════════════════════════════
+
+Version: 1.0
+Last Updated: September 2026
+Status: ✅ All Documentation Complete
+
+Ready to start? Read START_HERE.txt or run: ./RUN_WEBAPP.sh
+
+═══════════════════════════════════════════════════════════════════════════════

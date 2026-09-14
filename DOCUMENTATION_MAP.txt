@@ -1,0 +1,352 @@
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                                                                              ║
+║              WILDFIRE CALCULATOR - DOCUMENTATION GUIDE                       ║
+║                       Which File Should I Read?                              ║
+║                                                                              ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+🎯 QUICK ANSWER: WHAT TO READ BASED ON YOUR NEEDS
+
+═══════════════════════════════════════════════════════════════════════════════
+
+I WANT TO... → READ THIS FILE
+
+├─ "Just get it running NOW" (2 min)
+│  → GETTING_STARTED.md (Quick Navigation section)
+│
+├─ "Use the web dashboard" (5 min to start)
+│  → GETTING_STARTED.md → Option 1: Web App
+│  → Then: WEBAPP_GUIDE.md (if you want details)
+│
+├─ "Run a batch analysis report" (5 min to start)
+│  → GETTING_STARTED.md → Option 2: Batch Report
+│  → Then: README.md (if you want technical details)
+│
+├─ "Use Python in my own code" (10 min to start)
+│  → GETTING_STARTED.md → Option 3: Python API
+│  → Then: README.md → Python API section
+│
+├─ "Understand the full system" (30 min)
+│  → GETTING_STARTED.md → How It Works section
+│  → Then: USER_GUIDE.md → Complete guide
+│
+├─ "Learn all features & settings" (45 min)
+│  → USER_GUIDE.md (comprehensive reference)
+│  → Includes: Parameters, results, real-world costs, FAQ
+│
+├─ "Find out what real-world costs are based on" (15 min)
+│  → USER_GUIDE.md → Real-World Cost Data Sources section
+│  → Or: REAL_WORLD_COSTS.md (technical methodology)
+│
+├─ "Troubleshoot an issue" (5 min)
+│  → GETTING_STARTED.md → Common Issues & Solutions
+│  → Then: USER_GUIDE.md → FAQ & Troubleshooting
+│
+├─ "Understand the math/physics" (20 min)
+│  → GETTING_STARTED.md → How It Works section
+│  → Then: README.md → Mathematical Model section
+│
+├─ "Integrate into my system" (1+ hour)
+│  → README.md → Full technical reference
+│  → REAL_WORLD_COSTS.md → Cost integration details
+│  → INTEGRATION_SUMMARY.md → Implementation examples
+│
+└─ "See what changed with the Iron Man theme" (10 min)
+   → IRON_MAN_THEME.md → Complete design documentation
+   → Or: THEME_UPDATE_SUMMARY.md → Changelog
+
+═══════════════════════════════════════════════════════════════════════════════
+
+📋 COMPLETE DOCUMENTATION CATALOG
+
+═══════════════════════════════════════════════════════════════════════════════
+
+GETTING STARTED (Read These First)
+──────────────────────────────────
+
+FILE: GETTING_STARTED.md
+SIZE: ~13 KB | READ TIME: 10 min
+WHAT IT IS: Master guide with quick navigation for all use cases
+BEST FOR: First-time users, quick reference
+CONTAINS:
+  • Quick navigation by use case (web app, batch, Python)
+  • 5-minute tutorials for each option
+  • "How It Works" overview (physics & economics)
+  • Real-world cost summary
+  • Common issues & solutions
+WHEN TO READ: Start here! Everyone should read this.
+
+
+FILE: QUICK_START.txt
+SIZE: ~3 KB | READ TIME: 2 min
+WHAT IT IS: 2-page reference card with essentials
+BEST FOR: Quick commands, key findings, sensitivity summary
+CONTAINS:
+  • Dataset overview
+  • Quick run commands
+  • Key results numbers
+  • Model equations
+WHEN TO READ: After GETTING_STARTED.md, keep as reference
+
+
+FILE: START_HERE.txt
+SIZE: ~4 KB | READ TIME: 3 min
+WHAT IT IS: First-time user orientation
+BEST FOR: Understanding what you have, choosing your path
+CONTAINS:
+  • "What you have" overview
+  • Three options (web app, batch, Python)
+  • File overview
+  • Status checklist
+WHEN TO READ: Alternative to GETTING_STARTED.md (same purpose)
+NOTE: GETTING_STARTED.md supersedes this — it's more comprehensive
+
+
+DETAILED GUIDES (Read After Getting Started)
+──────────────────────────────────────────────
+
+FILE: README.md
+SIZE: ~8.8 KB | READ TIME: 45 min
+WHAT IT IS: Comprehensive technical documentation
+BEST FOR: Full API reference, deep technical understanding
+CONTAINS:
+  • Project structure overview
+  • Python API reference with examples
+  • Output file descriptions
+  • Mathematical model (full equations)
+  • Sensitivity analysis
+  • Results interpretation
+WHEN TO READ: When you want to integrate Python API or understand
+              the full technical model
+KEY SECTIONS:
+  → "Python API" for code integration
+  → "Mathematical Model" for physics details
+
+
+FILE: USER_GUIDE.md
+SIZE: ~40 KB | READ TIME: 60 min (reference guide)
+WHAT IT IS: Complete end-user reference manual
+BEST FOR: Learning all features, understanding calculations, FAQ
+CONTAINS:
+  • How it works (beginner-friendly)
+  • Web interface walkthrough
+  • Result interpretation
+  • Real-world cost data sources (detailed!)
+  • Sensitivity analysis
+  • Advanced features
+  • FAQ & troubleshooting
+WHEN TO READ: When you want comprehensive understanding or have questions
+KEY SECTIONS:
+  → "Real-World Cost Data Sources" for cost methodology
+  → "FAQ & Troubleshooting" for common issues
+  → "Understanding Results" for metrics explanation
+
+
+FILE: WEBAPP_GUIDE.md
+SIZE: ~24 KB | READ TIME: 20 min
+WHAT IT IS: Web app-specific feature documentation
+BEST FOR: Users working with the interactive dashboard
+CONTAINS:
+  • Getting started with Flask
+  • Feature walkthrough (6 major sections)
+  • File uploads & data management
+  • Scenario analysis
+  • Export functionality
+  • Troubleshooting (Flask-specific)
+WHEN TO READ: When using the web app, before using advanced features
+
+
+SPECIALIZED DOCUMENTATION (Deep Dives)
+──────────────────────────────────────
+
+FILE: REAL_WORLD_COSTS.md
+SIZE: ~10 KB | READ TIME: 15 min
+WHAT IT IS: Real-world cost data methodology
+BEST FOR: Understanding where economic values come from
+CONTAINS:
+  • BDIFF data source explanation
+  • Cost calibration methodology
+  • Department-by-department breakdown
+  • API integration framework (optional)
+  • Confidence levels & limitations
+WHEN TO READ: When you want to verify or customize cost data
+KEY INSIGHT: All costs calibrated from actual French government
+             fire department (SDIS) records + property valuations
+
+
+FILE: INTEGRATION_SUMMARY.md
+SIZE: ~50 KB | READ TIME: 30 min (reference)
+WHAT IT IS: Implementation guide with live API examples
+BEST FOR: Developers integrating the system
+CONTAINS:
+  • System architecture
+  • Real-world cost integration walkthrough
+  • API response examples (actual JSON)
+  • Testing methodology
+WHEN TO READ: When integrating into production systems
+
+
+FILE: IRON_MAN_THEME.md
+SIZE: ~170 KB | READ TIME: 60 min (reference)
+WHAT IT IS: Visual theme documentation
+BEST FOR: Understanding design philosophy & colors
+CONTAINS:
+  • Design rationale (Arc Reactor inspired)
+  • Color psychology & accessibility
+  • Animation design
+  • CSS implementation details
+WHEN TO READ: When customizing the web app or understanding the design
+
+
+FILE: THEME_UPDATE_SUMMARY.md
+SIZE: ~180 KB | READ TIME: 60 min (reference)
+WHAT IT IS: Changelog of visual updates
+BEST FOR: Tracking what CSS & HTML changed
+CONTAINS:
+  • Detailed CSS modifications
+  • HTML changes (structure & content)
+  • Before/after comparisons
+  • Animation definitions
+WHEN TO READ: When you need to modify the theme
+
+
+REFERENCE FILES (Look up as needed)
+───────────────────────────────────
+
+FILE: VISUAL_GUIDE.txt
+SIZE: ~10 KB
+WHAT IT IS: Step-by-step visual walkthrough of web app
+BEST FOR: Screenshot reference while using the interface
+
+
+FILE: WEBAPP_SUMMARY.txt
+SIZE: ~8 KB
+WHAT IT IS: Web app feature summary
+BEST FOR: Quick overview of what the app can do
+
+
+FILE: wildfire_impact_model.json
+WHAT IT IS: API specification in JSON format
+BEST FOR: Integration with external systems
+
+
+═══════════════════════════════════════════════════════════════════════════════
+
+🎓 READING PATHS BY EXPERIENCE LEVEL
+
+═══════════════════════════════════════════════════════════════════════════════
+
+BEGINNER (I just want to use it)
+────────────────────────────────
+1. GETTING_STARTED.md (this document) → 5 min
+2. GETTING_STARTED.md → Pick Option 1/2/3 → 5 min
+3. Start using the app! Questions? See USER_GUIDE.md FAQ → as needed
+
+TIME: ~10 min to start, help available
+
+
+INTERMEDIATE (I want to understand it)
+──────────────────────────────────────
+1. GETTING_STARTED.md → 5 min
+2. GETTING_STARTED.md → "How It Works" → 10 min
+3. README.md → Mathematical Model → 15 min
+4. USER_GUIDE.md → Real-World Cost Data → 15 min
+5. Start using with understanding! → 5-10 min
+
+TIME: ~1 hour to full understanding
+
+
+ADVANCED (I want to integrate/modify it)
+────────────────────────────────────────
+1. GETTING_STARTED.md → 5 min (context)
+2. README.md → Full document → 45 min
+3. REAL_WORLD_COSTS.md → 15 min (cost methodology)
+4. INTEGRATION_SUMMARY.md → 30 min (examples)
+5. Read source code docstrings → 30 min
+6. Start integrating with reference documents available → ongoing
+
+TIME: ~2 hours before starting integration, then reference as needed
+
+
+DESIGNER/THEME (I want to customize the look)
+─────────────────────────────────────────────
+1. GETTING_STARTED.md → 5 min (context)
+2. IRON_MAN_THEME.md → Design Philosophy section → 10 min
+3. THEME_UPDATE_SUMMARY.md → CSS Breakdown → 30 min
+4. Edit static/css/style.css → Reference as you work
+
+TIME: ~1 hour before starting changes
+
+
+═══════════════════════════════════════════════════════════════════════════════
+
+💡 QUICK REFERENCE: WHICH FILE FOR COMMON QUESTIONS
+
+═══════════════════════════════════════════════════════════════════════════════
+
+"How do I start?"
+→ GETTING_STARTED.md → Quick Navigation section (2 min)
+
+"What is this project?"
+→ GETTING_STARTED.md → "What This Is" section (3 min)
+
+"How do I use the web app?"
+→ GETTING_STARTED.md → "Option 1: Web App" (5 min)
+→ WEBAPP_GUIDE.md → "Features" section (10 min)
+
+"How do I run batch analysis?"
+→ GETTING_STARTED.md → "Option 2: Batch Report" (3 min)
+→ README.md → "generate_impact_report.py" section (5 min)
+
+"How do I use Python API?"
+→ GETTING_STARTED.md → "Option 3: Python API" (5 min)
+→ README.md → "Python API" section (20 min)
+
+"What do the results mean?"
+→ GETTING_STARTED.md → "Understanding the Results" (10 min)
+→ USER_GUIDE.md → "Understanding Results" section (15 min)
+
+"Where do the costs come from?"
+→ GETTING_STARTED.md → "Real-World Cost Data" (5 min)
+→ USER_GUIDE.md → "Real-World Cost Data Sources" (20 min)
+→ REAL_WORLD_COSTS.md → Full methodology (15 min)
+
+"Why is my result different?"
+→ USER_GUIDE.md → "FAQ & Troubleshooting" (15 min)
+→ GETTING_STARTED.md → "Common Issues" (5 min)
+
+"How does the math work?"
+→ GETTING_STARTED.md → "How It Works" section (10 min)
+→ README.md → "Mathematical Model" section (15 min)
+
+"Why is Mediterranean more expensive?"
+→ GETTING_STARTED.md → "Real-World Cost Data" (2 min)
+
+"Something's broken, help!"
+→ GETTING_STARTED.md → "Common Issues & Solutions" (5 min)
+→ USER_GUIDE.md → "FAQ & Troubleshooting" (20 min)
+
+"I want to change the theme"
+→ IRON_MAN_THEME.md → "Design Overview" (10 min)
+→ THEME_UPDATE_SUMMARY.md → CSS sections (30 min)
+
+═══════════════════════════════════════════════════════════════════════════════
+
+✨ KEY INSIGHT
+
+All these documents serve one project from different angles:
+
+• GETTING_STARTED.md    = Hub (points to everything)
+• README.md              = Technical deep dive
+• USER_GUIDE.md          = End-user reference
+• WEBAPP_GUIDE.md        = Web app specialist guide
+• REAL_WORLD_COSTS.md    = Cost methodology
+• INTEGRATION_SUMMARY.md = Developer integration guide
+• IRON_MAN_THEME.md      = Visual design guide
+
+Pick the right one for your need, and you'll find exactly what you need.
+Start with GETTING_STARTED.md — it's the hub.
+
+═══════════════════════════════════════════════════════════════════════════════
+
+Last updated: September 2026
